@@ -21,3 +21,4 @@ with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
 			print D
 
 print "\n--- Vectors created ---\n"
+print W
