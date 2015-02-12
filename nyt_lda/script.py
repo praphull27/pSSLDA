@@ -56,6 +56,8 @@ randseed = 194582
 # Number of samples to take
 numsamp = 1
 
+print "Starting LDA Inference."
+
 pr = cProfile.Profile()
 pr.enable()
 
