@@ -1,6 +1,6 @@
 import numpy as NP
 from pSSLDA import infer
-import timeit
+import cProfile, pstats, StringIO
 from guppy import hpy
 
 W = 29393
@@ -26,7 +26,7 @@ alpha = NP.ones((1,T)) * 1
 beta = NP.ones((T,W)) * 0.01
 
 # How many parallel samplers do we wish to use?
-P = 1
+P = 7
 
 # Random number seed 
 randseed = 194582
@@ -39,7 +39,17 @@ numsamp = 1
 
 print "\n--- Starting LDA Inference ---\n"
 
+pr = cProfile.Profile()
+pr.enable()
+
 # Do parallel inference
-timeit.timeit('infer(w, d, alpha, beta, numsamp, randseed, P)', number=1)
+finalz = infer(w, d, alpha, beta, numsamp, randseed, P)
+
+pr.disable()
+s = StringIO.StringIO()
+sortby = 'cumulative'
+ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+ps.print_stats(.0000001)
+print s.getvalue()
 
 print "\n--- LDA Completed ---\n"
