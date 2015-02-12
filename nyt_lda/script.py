@@ -7,6 +7,9 @@ from pSSLDA import infer
 import FastLDA 
 import cProfile, pstats, StringIO
 
+pr1 = cProfile.Profile()
+pr1.enable()
+
 wordvec = []
 docvec = []
 vocabulary = []
@@ -33,7 +36,7 @@ with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
 			if D%100000 == 0:
 				print "."
 
-print "Vectors created"
+print "\n--- Vectors created ---\n"
 # print wordvec
 # print docvec
 # print vocabulary
@@ -56,7 +59,16 @@ randseed = 194582
 # Number of samples to take
 numsamp = 1
 
-print "Starting LDA Inference."
+pr1.disable()
+s1 = StringIO.StringIO()
+sortby1 = 'cumulative'
+ps1 = pstats.Stats(pr1, stream=s1).sort_stats(sortby1)
+ps1.print_stats()
+print s1.getvalue()
+
+
+
+print "\n--- Starting LDA Inference ---\n"
 
 pr = cProfile.Profile()
 pr.enable()
@@ -71,4 +83,4 @@ ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
 ps.print_stats()
 print s.getvalue()
 
-print "LDA Completed."
+print "\n--- LDA Completed ---\n"
