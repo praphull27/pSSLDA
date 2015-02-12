@@ -1,15 +1,8 @@
-import pdb
-
 import numpy as NP
-import numpy.random as NPR
 
 from pSSLDA import infer
-import FastLDA 
 import cProfile, pstats, StringIO
 from guppy import hpy
-import gc
-
-gc.enable()
 
 wordvec = []
 docvec = []
@@ -18,8 +11,8 @@ W = 0
 D = 0
 T = 50
 
-with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
-# with open('test.txt', 'rb') as file:
+# with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
+with open('test.txt', 'rb') as file:
 	for line in file:
 		for word in line.split():
 			try:
@@ -31,11 +24,8 @@ with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
 			wordvec.append(i)
 			docvec.append(D)
 		D += 1
-		if D%1000000 == 0:
+		if D%10000 == 0:
 			print D
-		else:
-			if D%100000 == 0:
-				print "."
 
 print "\n--- Vectors created ---\n"
 
@@ -49,15 +39,13 @@ alpha = NP.ones((1,T)) * 1
 beta = NP.ones((T,W)) * 0.01
 
 # How many parallel samplers do we wish to use?
-P = 7
+P = 25
 
 # Random number seed 
 randseed = 194582
 
 # Number of samples to take
 numsamp = 1
-
-gc.disable()
 
 h = hpy()
 print h.heap()
