@@ -6,9 +6,10 @@ import numpy.random as NPR
 from pSSLDA import infer
 import FastLDA 
 import cProfile, pstats, StringIO
+from guppy import hpy
+import gc
 
-pr1 = cProfile.Profile()
-pr1.enable()
+gc.enable()
 
 wordvec = []
 docvec = []
@@ -17,8 +18,8 @@ W = 0
 D = 0
 T = 50
 
-with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
-# with open('test.txt', 'rb') as file:
+# with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
+with open('test.txt', 'rb') as file:
 	for line in file:
 		for word in line.split():
 			try:
@@ -37,11 +38,8 @@ with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
 				print "."
 
 print "\n--- Vectors created ---\n"
-# print wordvec
-# print docvec
-# print vocabulary
-# print W
-# print D
+
+del(vocabulary)
 
 (w, d) = (NP.array(wordvec, dtype = NP.int),
           NP.array(docvec, dtype = NP.int))
@@ -59,14 +57,10 @@ randseed = 194582
 # Number of samples to take
 numsamp = 1
 
-pr1.disable()
-s1 = StringIO.StringIO()
-sortby1 = 'cumulative'
-ps1 = pstats.Stats(pr1, stream=s1).sort_stats(sortby1)
-ps1.print_stats()
-print s1.getvalue()
+gc.disable()
 
-
+h = hpy()
+print h.heap()
 
 print "\n--- Starting LDA Inference ---\n"
 
