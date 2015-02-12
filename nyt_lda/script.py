@@ -18,8 +18,8 @@ W = 0
 D = 0
 T = 50
 
-# with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
-with open('test.txt', 'rb') as file:
+with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
+# with open('test.txt', 'rb') as file:
 	for line in file:
 		for word in line.split():
 			try:
