@@ -3,7 +3,7 @@ from pSSLDA import infer
 import cProfile, pstats, StringIO
 from guppy import hpy
 
-W = 29393
+W = 354700
 T = 50
 
 with open('wordvec.txt', 'rb') as file:
