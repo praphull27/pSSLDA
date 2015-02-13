@@ -6,20 +6,29 @@ from guppy import hpy
 W = 354700
 T = 50
 
+print "\n--- Vectors creation started ---\n"
+
 with open('wordvec.txt', 'rb') as file:
 	wordvec = file.read()
-	wordvec = (wordvec.strip()).split()
+	wordvec = wordvec.strip()
+	wordvec = wordvec.split()
 	wordvec = map(int, wordvec)
+
+w = NP.array(wordvec, dtype = NP.int)
+del(wordvec)
+
+print "\n--- Word Vector Comepleted ---\n"
 
 with open('docvec.txt', 'rb') as file:
 	docvec = file.read()
-	docvec = (docvec.strip()).split()
+	docvec = docvec.strip()
+	docvec = docvec.split()
 	docvec = map(int, docvec)
 
-print "\n--- Vectors created ---\n"
+d = NP.array(docvec, dtype = NP.int)
+del(docvec)
 
-(w, d) = (NP.array(wordvec, dtype = NP.int),
-          NP.array(docvec, dtype = NP.int))
+print "\n--- Vectors created ---\n"
 
 # Create parameters
 alpha = NP.ones((1,T)) * 1
@@ -32,7 +41,7 @@ P = 7
 randseed = 194582
 
 # Number of samples to take
-numsamp = 1
+numsamp = 10
 
 # h = hpy()
 # print h.heap()
