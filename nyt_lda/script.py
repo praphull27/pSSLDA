@@ -27,7 +27,6 @@ del(docvec)
 
 print "\n--- Vectors created ---\n"
 
-'''
 # Create parameters
 alpha = NP.ones((1,T)) * 1
 beta = NP.ones((T,W)) * 0.01
@@ -60,4 +59,3 @@ ps.print_stats(.0000001)
 print s.getvalue()
 
 print "\n--- LDA Completed ---\n"
-'''
