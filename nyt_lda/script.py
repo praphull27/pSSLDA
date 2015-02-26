@@ -2,6 +2,9 @@ import numpy as NP
 from pSSLDA import infer
 import cProfile, pstats, StringIO
 from guppy import hpy
+import time
+
+print "Start date & time " + time.strftime("%c")
 
 W = 354700
 T = 50
@@ -59,3 +62,4 @@ ps.print_stats(.0000001)
 print s.getvalue()
 
 print "\n--- LDA Completed ---\n"
+print "End date & time " + time.strftime("%c")
