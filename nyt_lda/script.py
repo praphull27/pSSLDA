@@ -19,7 +19,7 @@ with open('wordvec_line.txt', 'rb') as file:
 w = NP.array(wordvec, dtype = NP.int)
 del(wordvec)
 
-print "\n--- Word Vector Comepleted ---\n"
+print "\n--- Word Vector Completed ---\n"
 
 with open('docvec_line.txt', 'rb') as file:
 	for line in file:
