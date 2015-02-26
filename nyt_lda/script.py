@@ -5,31 +5,29 @@ from guppy import hpy
 
 W = 354700
 T = 50
-
+wordvec = []
+docvec = []
 print "\n--- Vectors creation started ---\n"
 
-with open('wordvec.txt', 'rb') as file:
-	wordvec = file.read()
-	wordvec = wordvec.strip()
-	wordvec = wordvec.split()
-	wordvec = map(int, wordvec)
+with open('wordvec_line.txt', 'rb') as file:
+	for line in file:
+		wordvec.append(int(line.strip()))
 
 w = NP.array(wordvec, dtype = NP.int)
 del(wordvec)
 
 print "\n--- Word Vector Comepleted ---\n"
 
-with open('docvec.txt', 'rb') as file:
-	docvec = file.read()
-	docvec = docvec.strip()
-	docvec = docvec.split()
-	docvec = map(int, docvec)
+with open('docvec_line.txt', 'rb') as file:
+	for line in file:
+		docvec.append(int(line.strip()))
 
 d = NP.array(docvec, dtype = NP.int)
 del(docvec)
 
 print "\n--- Vectors created ---\n"
 
+'''
 # Create parameters
 alpha = NP.ones((1,T)) * 1
 beta = NP.ones((T,W)) * 0.01
@@ -62,3 +60,4 @@ ps.print_stats(.0000001)
 print s.getvalue()
 
 print "\n--- LDA Completed ---\n"
+'''

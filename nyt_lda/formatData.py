@@ -16,8 +16,8 @@ with open('nyt_corpus_cleaned_for_lda.txt', 'rb') as file:
 				vocabulary.append(word)
 				i = W
 				W += 1
-			wordout.write(str(i)+ ' ')
-			docout.write(str(D)+ ' ')
+			wordout.write(str(i)+ '\n')
+			docout.write(str(D)+ '\n')
 		D += 1
 		if D % 10000 == 0:
 			print D
