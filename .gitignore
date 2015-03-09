@@ -2,3 +2,9 @@
 pSSLDA.c
 build/
 Makefile
+
+example/example1.py
+example/example_2.py
+nyt_lda/docvec.txt
+nyt_lda/nyt_corpus_cleaned_for_lda.txt
+nyt_lda/wordvec.txt
